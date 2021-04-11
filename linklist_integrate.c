@@ -4,9 +4,13 @@
 
 int main(void)
 {
-    NODE *first;
-    int arr[]={14,27,32,46};
-    first=createList(arr,4);  //create linklist by array
+    NODE *first, *node;
+    int arr[]={12,38,57};
+    first=createList(arr,3);  //create linklist by array
+    printList(first);
+
+    node=searchNode(first,38);  //從串列首找出38在哪一個節點
+    insertNode(node,46);  //在38節點後面insert 46
     printList(first);
     freeList(first);
 
@@ -40,7 +44,7 @@ void printList(NODE *first)
         printf("List is empty!\n");
     else
     {
-        while(current!=NULL)  //當node is not NULL, print結構成員data
+        while(current!=NULL)  //當當前node is not NULL, print結構成員data
         {
             printf("%3d", current->data);  //print當前node的data
             current=current->next;  //把當前node指向下一個node的位址給node
@@ -60,4 +64,28 @@ void freeList(NODE *first)
         current=current->next;  //再把下一個node給current
         free(tmp);  //釋放tmp記憶體
     }
+}
+
+// 搜尋鏈結串列的值
+NODE *searchNode(NODE *first, int item)
+{
+    NODE *current=first;
+    while(current!=NULL)
+    {
+        if(current->data==item)
+            return current;
+        else
+            current=current->next;
+    }
+    return NULL;  //find nothing
+}
+
+// 插入新的鏈結串列
+void insertNode(NODE *node, int item)
+{
+    NODE *newnode;
+    newnode=(NODE *) malloc(sizeof(NODE));
+    newnode->data=item;
+    newnode->next=node->next;  //將舊的節點的下一個節點指向newnode的下一個節點
+    node->next=newnode;  //將舊的節點的下一個節點指向newnode
 }
