@@ -10,8 +10,15 @@ int main(void)
     printList(first);
 
     node=searchNode(first,38);  //從串列首找出38在哪一個節點
-    insertNode(node,46);  //在38節點後面insert 46
+    first=deleteNode(first,node);  //把38節點刪除
     printList(first);
+
+    first=deleteNode(first,first);  //刪除串列首
+    printList(first);
+
+    first=deleteNode(first,first);  //刪除串列首
+    printList(first);
+
     freeList(first);
 
     return 0;
@@ -88,4 +95,25 @@ void insertNode(NODE *node, int item)
     newnode->data=item;
     newnode->next=node->next;  //將舊的節點的下一個節點指向newnode的下一個節點
     node->next=newnode;  //將舊的節點的下一個節點指向newnode
+}
+
+// 刪除既有的鏈結串列
+NODE *deleteNode(NODE *first, NODE *node)
+{
+    NODE *current=first;
+    if(first==NULL)
+    {
+        printf("Nothing to delete!\n");
+        return NULL;
+    }
+    if(node==first)  //如果要刪除的某個節點等於串列首
+        first=first->next;  //把串列首指向下一個節點
+    else
+    {
+        while(current->next!=node)  //當串列首指向的下一個節點 不等於 要刪除的某個節點
+            current=current->next;  //把串列首的下一個節點設給current, 進行下一個節點判斷
+        current->next=node->next;   //把某個要刪除節點的下一個節點設給串列首的下一個節點, 才可以刪除某個節點
+    }
+    free(node);  //釋放某個節點記憶體
+    return first;
 }
