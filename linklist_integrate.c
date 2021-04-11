@@ -18,7 +18,7 @@ NODE *createList(int *arr, int len)
 {
     int i;
     NODE *first, *current, *previous;
-    for ( i = 0; i < len; i++)
+    for (i = 0; i < len; i++)
     {
         current=(NODE *) malloc(sizeof(NODE));
         current->data=arr[i];  //把當前節點的data設為arr陣列的第i個元素
@@ -35,15 +35,15 @@ NODE *createList(int *arr, int len)
 // 印出鏈結串列 , 走訪traverse
 void printList(NODE *first)
 {
-    NODE *node=first;
+    NODE *current=first;
     if(first==NULL)
         printf("List is empty!\n");
     else
     {
-        while(node!=NULL)  //當node is not NULL, print結構成員data
+        while(current!=NULL)  //當node is not NULL, print結構成員data
         {
-            printf("%3d", node->data);  //print當前node的data
-            node=node->next;  //把當前node指向下一個node的位址給node
+            printf("%3d", current->data);  //print當前node的data
+            current=current->next;  //把當前node指向下一個node的位址給node
         }
         printf("\n");
     }
