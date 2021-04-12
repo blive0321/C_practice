@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "include/linklist.h"
+#include "include/linkedlist.h"
 
 int main(void)
 {
     NODE *first, *node;
     int arr[]={12,38,57};
-    first=createList(arr,3);  //create linklist by array
+    first=createList(arr,3);  //create linked list by array
     printList(first);
 
     node=searchNode(first,38);  //從串列首找出38在哪一個節點
