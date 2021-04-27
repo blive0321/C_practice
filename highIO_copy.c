@@ -14,7 +14,15 @@ int main(int argc, char *argv[])
     {
         fwrite(block, 1, nread, out);
     }
-    fclose(in);
-    fclose(out);
+    
+    if(0==(fclose(in)))
+        printf("關閉%d檔案成功!\n",argv[1]);
+    else
+        printf("關閉%d檔案失敗!\n",argv[1]);
+    
+    if(0==(fclose(out)))
+        printf("關閉%d檔案成功!\n",argv[1]);
+    else
+        printf("關閉%d檔案失敗!\n",argv[1]);
     exit(0);
 }
