@@ -1,5 +1,6 @@
+// Process and Program 程序和程式
 #include <unistd.h>
-#include <sys/types.h>
+#include <sys/types.h>  //使用fork()時, 要include
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,6 +13,7 @@ int main(int argc, char *argv[])
     printf("fork starting\n");
     pid = fork();  //開始多工程序
 
+    // OS會先執行哪一個程序, 我們不會知道
     switch(pid) //fork() return 0 代表是子程序, return 子程序的PID流水號代表是父程序, return -1代表錯誤
     {
     case -1:
